@@ -18,7 +18,7 @@ class GeoMetadata:
             rawMd = openURL(mdUrl, username=username, password=password)
             content = rawMd.read()
             if mdFormat == "text/xml":
-                self.md = MD_Metadata(etree.fromstring(content))
+                self.md = MD_Metadata(etree.ElementTree(etree.fromstring(content)))
         except HTTPError as e:
             raise GsToGnMetadataInvalidInconsistency(mdUrl,
                                                "'%s' Metadata not found (HTTP %s): %s"
